@@ -4,8 +4,8 @@
 		"host" : "mon-site.com",
 		"lb" : "roundrobin",
 		"workers" : [
-		           '10.66.1.2',
-		           '10.66.1.3:45678'
+		           "10.66.1.2",
+		           "10.66.1.3:45678"
 		          ]
 		"headers" : {
 			"incoming": {
