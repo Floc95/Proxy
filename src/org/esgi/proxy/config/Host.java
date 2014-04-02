@@ -3,8 +3,13 @@ package org.esgi.proxy.config;
 import java.util.List;
 
 public class Host {
-	public String host;
-	public String lb;
-	public List<String> workers;
-	//public List<Header> headers;
+    public String name;
+    public String document_root;
+    public List<Handler> handlers;
+    @Override
+    public String toString() {
+        return "Host [name=" + name + ", document_root=" + document_root
+                + ", handlers=" + handlers + "]";
+    }
+
 }

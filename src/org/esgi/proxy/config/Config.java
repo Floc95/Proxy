@@ -2,10 +2,12 @@ package org.esgi.proxy.config;
 
 import java.util.List;
 
-import org.esgi.proxy.config.Host;
-
 public class Config {
-
-	public List<Host> hosts;
+    public int port;
+    public List<Host> hosts;
+    @Override
+    public String toString() {
+        return "Config [port=" + port + ", hots=" + hosts + "]";
+    }
 
 }
