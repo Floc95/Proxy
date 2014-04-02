@@ -1,19 +1,13 @@
 
 {
+	"port" : 2222,
 	"hosts" : [{
-		"host" : "mon-site.com",
-		"lb" : "roundrobin",
-		"workers" : [
-		           "10.66.1.2",
-		           "10.66.1.3:45678"
-		          ]
-		"headers" : {
-			"incoming": {
-				"add" : [{"My-ProxyHeader" : "123"}]
-			},
-			"outgoing" : { 
-				"add" : [{"For-Client-Header" : "765"}]
-			}
+		"name" : "mon-site.com",
+		"document_root" : "C:/var/www/site1.com",
+		"handlers" : [ {
+			"clazz" : "ProxyHandler",
+			"pattern" : "^.*$"
 		}
+		]
 	}]
 }
