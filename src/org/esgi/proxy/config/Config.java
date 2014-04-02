@@ -1,13 +1,11 @@
 package org.esgi.proxy.config;
 
-import java.util.List;
-
 public class Config {
-    public int port;
-    public List<Host> hosts;
+    //public List<Host> hosts;
+    public Host host;
     @Override
     public String toString() {
-        return "Config [port=" + port + ", hots=" + hosts + "]";
+        return null;
     }
 
 }

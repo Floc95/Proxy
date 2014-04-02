@@ -1,10 +1,12 @@
-import org.esgi.proxy.ProxyServer;
+import org.esgi.proxy.FinalProxy;
+
+import java.io.File;
 
 
 public class Application {
 	
 	public static void main(String[] args) throws Exception {
-		new ProxyServer().run();
+		new FinalProxy(new File("./config.js")).run();
 	}
 
 }
