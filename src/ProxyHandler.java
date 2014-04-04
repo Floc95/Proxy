@@ -83,53 +83,27 @@ public class ProxyHandler implements IHttpHandler {
 				
 				Map<String, String> headers = new HashMap<String, String>();
 				for(Header header : host.headers)
-					if (header.name.equals("outcoming"))
+					if (header.name.equals("outgoing"))
 						for(Instruction instr : header.instructions)
 							if (instr.Name.equals("add"))
 								headers = instr.values;
 				
 				OutputStream output = socket.getOutputStream();
 				
+				// Copy sans touchez à rien
+				/*int i =-1;
+		        while (-1 !=  (i = server.getInputStream().read()))
+		            output.write(i);*/
+				
+				// Copy avec gestion headers
 		        response.writeHeaders(output);
 		        response.writeCustomHeaders(output, headers);
 		        response.writeContent(output, server.getInputStream());
-				
-		        output.flush();
+				output.flush();
 		        //output.close();
 		        
 				break;
 			}
 		}
 	}
-	
-	static void copyHeader(InputStream is, OutputStream os) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-		OutputStreamWriter osw = new OutputStreamWriter(os); 
-		
-		String line;
-		while((line = br.readLine()) != null)
-		{
-			if (line.equals(""))
-				return;
-			osw.write(line + "\r\n");
-		}
-	}
-	
-	static void appendHeader(OutputStream os, Host host) throws IOException {
-		OutputStreamWriter osw = new OutputStreamWriter(os); 
-		
-		for(Header header : host.headers)
-			if (header.name.equals("outcoming"))
-				for(Instruction instr : header.instructions)
-					if (instr.Name.equals("add"))
-						for (Entry<String, String> entry : instr.values.entrySet())
-							osw.write(entry.getKey() + ": " + entry.getValue() + "\r\n");
-		osw.write("\r\n");
-	}
-	
-	static void copyContent(InputStream is, OutputStream os) throws IOException {
-		int i =-1;
-        while (-1 !=  (i=is.read()))
-            os.write(i);
-    }
 }
